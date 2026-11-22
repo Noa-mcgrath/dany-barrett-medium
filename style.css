@@ -887,6 +887,441 @@ body {
 
 /* ============ FOOTER ============ */
 
+/* ============ BOOKING ============ */
+
+.booking {
+  position: relative;
+  padding: 7.5rem 1.5rem 6rem;
+  background:
+    radial-gradient(ellipse 55% 45% at 12% 0%, rgba(88, 26, 40, 0.25), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 88% 100%, rgba(40, 70, 52, 0.28), transparent 70%),
+    var(--bg-deep);
+}
+
+.celestial-accent--booking {
+  top: 12%;
+  left: 7%;
+}
+
+.booking-lede {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cream);
+  text-align: center;
+  max-width: 40ch;
+  margin: 2rem auto 0;
+}
+
+.milkyway {
+  position: relative;
+  max-width: 1000px;
+  height: 460px;
+  margin: 2.6rem auto 0;
+}
+
+/* masked visual layer: the galaxy's colors feather out into the page */
+.milkyway-canvas {
+  position: absolute;
+  inset: -70px -60px;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    /* ambient nebulae + deep space, in violet, blue, and rose */
+    radial-gradient(ellipse 70% 60% at 28% 72%, rgba(112, 72, 138, 0.11), transparent 70%),
+    radial-gradient(ellipse 60% 55% at 76% 24%, rgba(78, 108, 172, 0.1), transparent 70%),
+    radial-gradient(ellipse 50% 45% at 18% 18%, rgba(170, 92, 118, 0.08), transparent 70%),
+    radial-gradient(ellipse 50% 45% at 84% 80%, rgba(98, 70, 150, 0.08), transparent 70%),
+    radial-gradient(ellipse 120% 90% at 50% 50%, #120e22, #06060d);
+  -webkit-mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, #000 32%, rgba(0, 0, 0, 0.55) 58%, transparent 90%);
+  mask-image: radial-gradient(ellipse 72% 68% at 50% 50%, #000 32%, rgba(0, 0, 0, 0.55) 58%, transparent 90%);
+}
+
+.milkyway-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* rotating galaxy layer: spiral arms + stars spinning around the core */
+.milkyway-rotor {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1200px;
+  height: 1200px;
+  margin: -600px 0 0 -600px;
+  pointer-events: none;
+  animation: galaxy-spin 150s linear infinite;
+  will-change: transform;
+}
+
+.milkyway-rotor.paused {
+  animation-play-state: paused;
+}
+
+@keyframes galaxy-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .milkyway-rotor {
+    animation: none;
+  }
+}
+
+.galaxy-arms {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.galaxy-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 340px;
+  height: 340px;
+  margin: -170px 0 0 -170px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(250, 238, 220, 0.5) 0%,
+    rgba(238, 182, 198, 0.3) 22%,
+    rgba(165, 125, 215, 0.2) 45%,
+    rgba(100, 115, 190, 0.1) 65%,
+    transparent 78%
+  );
+  filter: blur(6px);
+}
+
+/* ---- shooting stars ---- */
+
+.shooting-star {
+  position: absolute;
+  top: 14%;
+  left: -12%;
+  width: 150px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(to left, #f8f0e1, rgba(222, 140, 168, 0.5), transparent);
+  filter: drop-shadow(0 0 6px rgba(248, 240, 225, 0.9));
+  transform: rotate(14deg);
+  opacity: 0;
+  animation: shooting 9s linear infinite;
+  animation-delay: 3s;
+}
+
+.shooting-star--2 {
+  top: 58%;
+  left: -14%;
+  width: 110px;
+  background: linear-gradient(to left, #eef2fb, rgba(120, 155, 210, 0.5), transparent);
+  filter: drop-shadow(0 0 6px rgba(190, 210, 245, 0.9));
+  transform: rotate(-11deg);
+  animation: shooting-2 13s linear infinite;
+  animation-delay: 7.5s;
+}
+
+@keyframes shooting {
+  0% { transform: translate(0, 0) rotate(14deg); opacity: 0; }
+  1% { opacity: 1; }
+  8% { opacity: 1; }
+  11% { transform: translate(1350px, 330px) rotate(14deg); opacity: 0; }
+  100% { transform: translate(1350px, 330px) rotate(14deg); opacity: 0; }
+}
+
+@keyframes shooting-2 {
+  0% { transform: translate(0, 0) rotate(-11deg); opacity: 0; }
+  1% { opacity: 1; }
+  6% { opacity: 1; }
+  8.5% { transform: translate(1350px, -260px) rotate(-11deg); opacity: 0; }
+  100% { transform: translate(1350px, -260px) rotate(-11deg); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shooting-star {
+    animation: none;
+  }
+}
+
+/* ---- black hole: warp back to the constellations ---- */
+
+.blackhole {
+  position: absolute;
+  right: 3%;
+  bottom: 3%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.blackhole-disk {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  transition: transform 0.35s ease;
+}
+
+/* swirling accretion disk */
+.blackhole-disk::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(248, 236, 218, 0.9),
+    rgba(222, 140, 168, 0.75),
+    rgba(150, 120, 200, 0.8),
+    rgba(120, 155, 210, 0.85),
+    rgba(248, 236, 218, 0.9)
+  );
+  box-shadow: 0 0 16px rgba(165, 125, 215, 0.55), 0 0 42px rgba(120, 155, 210, 0.3);
+  animation: blackhole-spin 7s linear infinite;
+}
+
+/* event horizon */
+.blackhole-disk::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border-radius: 50%;
+  background: #05050a;
+  box-shadow: 0 0 10px 2px rgba(5, 5, 10, 0.9), inset 0 0 6px rgba(248, 236, 218, 0.35);
+}
+
+@keyframes blackhole-spin {
+  to { transform: rotate(-360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blackhole-disk::before {
+    animation: none;
+  }
+}
+
+.blackhole-label {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.blackhole:hover .blackhole-disk,
+.blackhole:focus-visible .blackhole-disk {
+  transform: scale(1.14);
+}
+
+.blackhole:hover .blackhole-label,
+.blackhole:focus-visible .blackhole-label {
+  color: var(--cream);
+}
+
+.milkyway-path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.milkyway-path path,
+.milkyway-path ellipse {
+  stroke: rgba(203, 179, 145, 0.16);
+  stroke-width: 1;
+  stroke-dasharray: 3 9;
+  fill: none;
+}
+
+.milkyway-path circle {
+  fill: rgba(233, 221, 200, 0.75);
+}
+
+.star-node {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.6rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  z-index: 2;
+}
+
+.star-core {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  font-size: 1.35rem;
+  color: var(--gold);
+  border: 1px solid rgba(203, 179, 145, 0.35);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(203, 179, 145, 0.16), rgba(203, 179, 145, 0.03) 70%);
+  filter:
+    drop-shadow(0 0 6px rgba(203, 179, 145, 0.8))
+    drop-shadow(0 0 16px rgba(203, 179, 145, 0.35));
+  animation: star-twinkle 3.4s ease-in-out infinite;
+  transition: color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.star-node:nth-of-type(odd) .star-core {
+  animation-delay: -1.7s;
+}
+
+.star-node:hover .star-core,
+.star-node:focus-visible .star-core {
+  animation-play-state: paused;
+  transform: scale(1.15);
+  border-color: rgba(203, 179, 145, 0.7);
+}
+
+.star-node[aria-expanded="true"] .star-core {
+  animation-play-state: paused;
+  color: var(--maroon-bright);
+  border-color: var(--maroon-bright);
+  background: radial-gradient(circle, rgba(154, 74, 90, 0.25), rgba(154, 74, 90, 0.05) 70%);
+  filter:
+    drop-shadow(0 0 6px rgba(154, 74, 90, 0.85))
+    drop-shadow(0 0 16px rgba(154, 74, 90, 0.4));
+}
+
+.star-label {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  white-space: nowrap;
+  opacity: 0.85;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.star-node:hover .star-label,
+.star-node:focus-visible .star-label,
+.star-node[aria-expanded="true"] .star-label {
+  opacity: 1;
+  color: var(--cream);
+}
+
+.star-cards {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.star-card {
+  margin-top: 2.4rem;
+  padding: 3rem 2.4rem 2.6rem;
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--gold-faint);
+  border-radius: 160px 160px 18px 18px;
+  box-shadow: 0 0 45px rgba(203, 179, 145, 0.08);
+  animation: star-card-emerge 0.5s ease both;
+}
+
+@keyframes star-card-emerge {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.star-card-eyebrow {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--maroon-bright);
+  margin-bottom: 0.9rem;
+}
+
+.star-card h4 {
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.9rem;
+}
+
+.star-card p {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+
+.star-card-options {
+  list-style: none;
+  margin: 1.4rem 0 0.4rem;
+  padding: 0;
+  text-align: left;
+}
+
+.star-card-options li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 0.2rem;
+  border-top: 1px solid rgba(203, 179, 145, 0.18);
+}
+
+.star-card-options li:last-child {
+  border-bottom: 1px solid rgba(203, 179, 145, 0.18);
+}
+
+.option-detail {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+.btn--option {
+  padding: 0.5rem 1.3rem;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 680px) {
+  .milkyway {
+    height: 400px;
+  }
+
+  .star-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+.booking .pendant {
+  margin-top: 3rem;
+}
+
 .footer {
   position: relative;
   padding: 7rem 1.5rem 3rem;
@@ -966,6 +1401,18 @@ body {
 
 .dust--wine {
   background: radial-gradient(circle, rgba(246, 227, 232, 0.95) 0%, rgba(154, 74, 90, 0.55) 55%, transparent 100%);
+}
+
+.dust--pink {
+  background: radial-gradient(circle, rgba(250, 226, 235, 0.95) 0%, rgba(222, 140, 168, 0.6) 55%, transparent 100%);
+}
+
+.dust--violet {
+  background: radial-gradient(circle, rgba(234, 224, 250, 0.95) 0%, rgba(150, 120, 200, 0.6) 55%, transparent 100%);
+}
+
+.dust--blue {
+  background: radial-gradient(circle, rgba(222, 234, 250, 0.95) 0%, rgba(120, 155, 210, 0.62) 55%, transparent 100%);
 }
 
 /* occasional four-point star among the dust */
