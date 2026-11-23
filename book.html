@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book a Session — Danyelle Barrett</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ============ NAV ============ -->
+    <nav class="site-nav scrolled">
+      <a class="nav-wordmark" href="index.html">Danyelle <span class="mark" aria-hidden="true">✦</span> Barrett</a>
+      <ul class="nav-links">
+        <li><a href="index.html#top">Aurora</a></li>
+        <li class="nav-sep" aria-hidden="true">✦</li>
+        <li><a href="index.html#about">The Guide</a></li>
+        <li class="nav-sep" aria-hidden="true">✦</li>
+        <li><a href="index.html#services">Constellations</a></li>
+        <li class="nav-sep" aria-hidden="true">✦</li>
+        <li><a class="active" href="book.html">Book a Session</a></li>
+        <li class="nav-sep" aria-hidden="true">✦</li>
+        <li><a href="index.html#contact">Stardust</a></li>
+      </ul>
+    </nav>
+
+    <!-- ============ BOOKING PAGE ============ -->
+    <main class="booking-page">
+      <span class="celestial-accent celestial-accent--booking" aria-hidden="true">✦</span>
+      <div class="services-heading">
+        <h1 class="eyebrow">Book a Session <span class="diamond-sm" aria-hidden="true">◆</span></h1>
+        <div class="heading-rule" aria-hidden="true"></div>
+      </div>
+      <p class="booking-lede" id="booking-session-name">Choose your date and time below &mdash; your booking is confirmed right here.</p>
+      <a class="booking-back" href="index.html#book">&larr; Back to the river of stars</a>
+      <div class="booking-widget" id="sb-widget">
+        <noscript>
+          <p>
+            JavaScript is required to book online here. You can also book directly at
+            <a href="https://readingswithdany.simplybook.me/v2/">readingswithdany.simplybook.me</a>.
+          </p>
+        </noscript>
+      </div>
+      <div class="pendant" aria-hidden="true">
+        <span class="pendant-line"></span>
+        <span class="pendant-circle"></span>
+        <span class="pendant-dot"></span>
+      </div>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer footer--slim" id="contact">
+      <div class="footer-content">
+        <p class="footer-copy">&copy; <span id="year"></span> Danyelle Barrett &mdash; Reiki Energy Healing &middot; Energetic Home Cleansing &middot; Intuitive Guidance</p>
+      </div>
+    </footer>
+
+    <script src="https://widget.simplybook.me/v2/widget/widget.js"></script>
+    <script>
+      // SimplyBook services offered on the site, keyed by service id
+      var SERVICES = {
+        2: "In-Person Intuitive Reading \u00b7 30 minutes \u00b7 $65",
+        3: "In-Person Intuitive Reading \u00b7 1 hour \u00b7 $130",
+        4: "Intuitive Phone Reading \u00b7 30 minutes \u00b7 $50",
+        5: "Intuitive Phone Reading \u00b7 1 hour \u00b7 $100",
+        6: "Reiki Session \u00b7 30 minutes \u00b7 $65",
+        7: "Energetic Home Cleansing \u00b7 within 30 miles \u00b7 $125",
+        8: "Energetic Home Cleansing \u00b7 within 60 miles \u00b7 $150",
+        9: "Gift Certificate \u00b7 30-minute in-person reading",
+      };
+
+      var service = new URLSearchParams(window.location.search).get("service");
+      var navigate = "book";
+      if (service && Object.prototype.hasOwnProperty.call(SERVICES, service)) {
+        navigate = "book/service/" + service + "/count/1";
+        document.getElementById("booking-session-name").textContent =
+          SERVICES[service] + " — choose your date and time below.";
+      }
+
+      new SimplybookWidget({
+        widget_type: "iframe",
+        url: "https://readingswithdany.simplybook.me",
+        theme: "default",
+        container_id: "sb-widget",
+        navigate: navigate,
+      });
+
+      var yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

@@ -78,7 +78,7 @@ if (navLinks.length) {
   );
 
   navLinks.forEach((link) => {
-    const section = document.querySelector(link.hash);
+    const section = link.hash ? document.querySelector(link.hash) : null;
     if (section) spy.observe(section);
   });
 }
