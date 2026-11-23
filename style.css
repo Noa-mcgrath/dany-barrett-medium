@@ -1831,3 +1831,102 @@ body {
 .footer--slim .footer-copy {
   margin-top: 0;
 }
+
+/* ============ COMPLETE YOUR PAYMENT (revealed after booking) ============ */
+
+.payment {
+  position: relative;
+  padding: 6.5rem 1.5rem 6rem;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 60% 50% at 85% 0%, rgba(88, 26, 40, 0.22), transparent 70%),
+    radial-gradient(ellipse 55% 45% at 10% 100%, rgba(40, 70, 52, 0.25), transparent 70%),
+    var(--bg-panel);
+}
+
+.payment-lede {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cream);
+  max-width: 44ch;
+  margin: 2rem auto 0;
+}
+
+.payment-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 860px;
+  margin: 2.4rem auto 0;
+}
+
+.btn--pay {
+  letter-spacing: 0.18em;
+  padding: 0.75rem 1.6rem;
+}
+
+.btn--pay.suggested {
+  border-color: var(--gold);
+  background: var(--maroon-glow);
+  box-shadow: 0 0 26px rgba(203, 179, 145, 0.25);
+}
+
+.payment-note {
+  margin: 2.2rem auto 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+}
+
+.payment-note .sparkle {
+  margin-right: 0.6rem;
+}
+
+.payment-inperson {
+  max-width: 48ch;
+  margin: 2.6rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(203, 179, 145, 0.18);
+}
+
+.payment-inperson p {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.payment-dismiss {
+  margin-top: 1.2rem;
+  cursor: pointer;
+  background: transparent;
+}
+
+/* booking-confirmed banner on book.html */
+.pay-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: fit-content;
+  margin: 1.6rem auto 0;
+  padding: 0.8rem 2.2rem;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: var(--maroon-glow);
+  color: var(--cream);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 0 30px rgba(138, 65, 82, 0.35);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.pay-banner:hover {
+  border-color: var(--cream);
+  box-shadow: 0 0 40px rgba(203, 179, 145, 0.35);
+}

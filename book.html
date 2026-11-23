@@ -37,6 +37,11 @@
         <div class="heading-rule" aria-hidden="true"></div>
       </div>
       <p class="booking-lede" id="booking-session-name">Choose your date and time below &mdash; your booking is confirmed right here.</p>
+      <a class="pay-banner" id="pay-banner" href="index.html#pay" hidden>
+        <span class="sparkle" aria-hidden="true">✦</span>
+        Booking confirmed &mdash; continue to online payment
+        <span class="sparkle" aria-hidden="true">✦</span>
+      </a>
       <a class="booking-back" href="index.html#book">&larr; Back to the river of stars</a>
       <div class="booking-widget" id="sb-widget">
         <noscript>
@@ -88,6 +93,28 @@
         theme: "default",
         container_id: "sb-widget",
         navigate: navigate,
+      });
+
+      // Detect a confirmed booking: the visitor reaches the client-details
+      // step, then SimplyBook opens its booking-result popup (modalShow).
+      var SB_ORIGIN = "https://readingswithdany.simplybook.me";
+      var reachedDetails = false;
+      window.addEventListener("message", function (e) {
+        if (e.origin !== SB_ORIGIN || !e.data || typeof e.data !== "object") return;
+        if (e.data.event === "stepChanged" && e.data.step === "details") {
+          reachedDetails = true;
+        }
+        if (e.data.event === "modalShow" && reachedDetails) {
+          reachedDetails = false;
+          try {
+            localStorage.setItem(
+              "rwd_pay_pending",
+              JSON.stringify({ t: Date.now(), service: service || null })
+            );
+          } catch (err) {}
+          var banner = document.getElementById("pay-banner");
+          if (banner) banner.hidden = false;
+        }
       });
 
       var yearEl = document.getElementById("year");

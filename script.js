@@ -279,6 +279,40 @@ if (orbitNodes.length) {
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+// --- Payment section: revealed after a booking is confirmed -------------------
+
+const paySection = document.getElementById("pay");
+if (paySection) {
+  let pending = null;
+  try {
+    pending = JSON.parse(localStorage.getItem("rwd_pay_pending"));
+  } catch (e) {}
+  const FRESH_MS = 48 * 60 * 60 * 1000; // show for up to 48h after booking
+  if (pending && typeof pending.t === "number" && Date.now() - pending.t < FRESH_MS) {
+    paySection.hidden = false;
+
+    // spotlight the pay button matching the booked session
+    if (pending.service) {
+      const match = paySection.querySelector(`.btn--pay[data-service="${pending.service}"]`);
+      if (match) match.classList.add("suggested");
+    }
+
+    const dismiss = paySection.querySelector(".payment-dismiss");
+    if (dismiss) {
+      dismiss.addEventListener("click", () => {
+        try {
+          localStorage.removeItem("rwd_pay_pending");
+        } catch (e) {}
+        paySection.hidden = true;
+      });
+    }
+
+    if (window.location.hash === "#pay") {
+      paySection.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+}
+
 // --- Get In Touch: reveal email + phone options -------------------------------
 
 const contactToggle = document.querySelector(".contact-toggle");
