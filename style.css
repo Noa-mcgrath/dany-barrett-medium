@@ -30,6 +30,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -138,7 +139,7 @@ body {
   transform: scaleX(1);
 }
 
-@media (max-width: 720px) {
+@media (max-width: 920px) {
   .site-nav,
   .site-nav.scrolled {
     flex-direction: column;
@@ -147,12 +148,25 @@ body {
   }
 
   .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.4rem;
     gap: 0.8rem;
   }
 
   .nav-links a {
     font-size: 0.58rem;
     letter-spacing: 0.2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-sep {
+    display: none;
+  }
+
+  .nav-links {
+    gap: 0.5rem 0.9rem;
   }
 }
 
@@ -245,6 +259,7 @@ body {
   justify-content: center;
   text-align: center;
   isolation: isolate;
+  overflow: hidden;
 }
 
 .hero-bg {
@@ -435,11 +450,26 @@ body {
 }
 
 .hero-list li {
-  font-size: 0.72rem;
+  font-size: 0.95rem;
+  font-weight: 500;
   letter-spacing: 0.5em;
   text-transform: uppercase;
   color: var(--gold-soft);
   padding: 0.35rem 0;
+}
+
+@media (max-width: 720px) {
+  .hero-list li {
+    font-size: 0.82rem;
+    letter-spacing: 0.3em;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-list li {
+    font-size: 0.74rem;
+    letter-spacing: 0.22em;
+  }
 }
 
 .hero-line {
@@ -1281,6 +1311,7 @@ body {
 
 .star-card-options li {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
@@ -1308,13 +1339,60 @@ body {
 }
 
 @media (max-width: 680px) {
+  .booking {
+    padding: 6rem 1.2rem 5rem;
+  }
+
+  .booking-lede {
+    font-size: 1.15rem;
+  }
+
   .milkyway {
     height: 400px;
   }
 
+  .milkyway-canvas {
+    inset: -40px -24px;
+  }
+
   .star-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+  }
+
+  .star-core {
+    width: 38px;
+    height: 38px;
+    font-size: 1.15rem;
+  }
+
+  .blackhole-disk {
+    width: 44px;
+    height: 44px;
+  }
+
+  .blackhole-disk::after {
+    inset: 7px;
+  }
+
+  .blackhole-label {
+    font-size: 0.56rem;
+    letter-spacing: 0.14em;
+  }
+
+  .star-card {
+    margin-top: 2rem;
+    padding: 2.4rem 1.4rem 2rem;
+    border-radius: 120px 120px 16px 16px;
+  }
+
+  .star-card h4 {
+    font-size: 1.45rem;
+  }
+
+  .star-card-options li {
+    justify-content: center;
+    text-align: center;
   }
 }
 
@@ -1535,7 +1613,7 @@ body {
     radial-gradient(ellipse 90% 45% at 50% 100%, rgba(120, 170, 135, 0.14), transparent 70%),
     rgba(150, 160, 172, 0.08);
 }
-
+ 
 .contact-option--moon:hover {
   background:
     radial-gradient(circle at 50% 22%, rgba(215, 222, 230, 0.2), transparent 62%),
@@ -1622,6 +1700,16 @@ body {
 
 /* ============ RESPONSIVE ============ */
 
+@media (max-width: 1024px) and (min-width: 861px) {
+  .cards {
+    gap: 1.4rem;
+  }
+
+  .card-arch--text {
+    padding: 2rem 1.2rem;
+  }
+}
+
 @media (max-width: 860px) {
   .about-inner {
     grid-template-columns: 1fr;
@@ -1646,5 +1734,37 @@ body {
 
   .fan-ornament {
     margin: 0 auto 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 5rem 1.2rem 7rem;
+  }
+
+  .services {
+    padding: 4rem 1.2rem 5rem;
+  }
+
+  .eyebrow {
+    letter-spacing: 0.3em;
+  }
+
+  .card-arch--text {
+    padding: 2rem 1.2rem;
+  }
+
+  .contact-option {
+    min-width: 0;
+    flex: 1 1 150px;
+    padding: 1.2rem 1.2rem 1rem;
+  }
+
+  .footer {
+    padding: 5rem 1.2rem 2.5rem;
+  }
+
+  .footer-copy {
+    letter-spacing: 0.14em;
   }
 }

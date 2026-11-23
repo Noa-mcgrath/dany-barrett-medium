@@ -268,6 +268,8 @@ if (orbitNodes.length) {
       node.addEventListener("mouseleave", () => setPaused(false));
       node.addEventListener("focus", () => setPaused(true));
       node.addEventListener("blur", () => setPaused(false));
+      node.addEventListener("touchstart", () => setPaused(true), { passive: true });
+      node.addEventListener("touchend", () => setTimeout(() => setPaused(false), 800), { passive: true });
     });
   }
 }
