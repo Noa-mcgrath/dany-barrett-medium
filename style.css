@@ -724,6 +724,10 @@ body {
   margin-top: -1.5rem;
 }
 
+.cards > .card:last-child:nth-child(4) {
+  grid-column: 2;
+}
+
 .constellation-card {
   min-height: 300px;
   padding: 2rem 1.5rem;
@@ -1726,6 +1730,10 @@ body {
   .cards {
     grid-template-columns: 1fr;
     max-width: 420px;
+  }
+
+  .cards > .card:last-child:nth-child(4) {
+    grid-column: auto;
   }
 
   .card--center {
